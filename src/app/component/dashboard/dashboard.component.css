@@ -1,0 +1,10 @@
+/* Hide the sidebar when 'active' class is removed */
+.vertical-menu {
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+/* Move the sidebar out of view when 'active' is false */
+.vertical-menu.active {
+  transform: translateX(-250px); /* Adjust as needed */
+}

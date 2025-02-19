@@ -1,0 +1,101 @@
+<body data-sidebar="dark">
+    <div class="vertical-menu" [class.active]="isSidebarActive">
+
+      <!-- LOGO -->
+      <div class="navbar-brand-box">
+        <a href="index.html" class="logo logo-dark">
+          <span class="logo-sm">
+            <img src="assets/images/logo-dark-sm.png" alt="" height="22">
+          </span>
+          <span class="logo-lg">
+            <img src="assets/images/logo-dark.png" alt="" height="22">
+          </span>
+        </a>
+
+        <a href="index.html" class="logo logo-light">
+          <span class="logo-lg">
+            <img src="assets/images/logo-light.png" alt="" height="22">
+          </span>
+          <span class="logo-sm">
+            <img src="assets/images/logo-light-sm.png" alt="" height="22">
+          </span>
+        </a>
+      </div>
+
+      <button type="button" class="btn btn-sm px-3 header-item vertical-menu-btn topnav-hamburger" (click)="toggleSidebar()">
+        <span class="hamburger-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+
+
+      <div data-simplebar class="sidebar-menu-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+          <!-- Left Menu Start -->
+          <ul class="metismenu list-unstyled" id="side-menu">
+            <li class="menu-title" data-key="t-menu">Menu</li>
+
+            <li>
+              <a href="javascript: void(0);">
+                <i class="icon nav-icon" data-eva="grid-outline"></i>
+                <span class="menu-item" data-key="t-dashboards">Dashboards</span>
+                <span class="badge rounded-pill bg-primary">3</span>
+              </a>
+              <ul class="sub-menu" aria-expanded="false">
+                <li><a href="index.html" data-key="t-ecommerce">Ecommerce</a></li>
+              </ul>
+            </li>
+
+            <li class="menu-title" data-key="t-components">Components</li>
+
+            <li>
+              <a href="javascript: void(0);" class="has-arrow">
+                <i class="icon nav-icon" data-eva="layers-outline"></i>
+                <span class="menu-item" data-key="t-ui-elements">UI Elements</span>
+              </a>
+              <ul class="sub-menu" aria-expanded="false">
+                <li><a href="ui-alerts.html" data-key="t-alerts">Alerts</a></li>
+                <li><a href="ui-buttons.html" data-key="t-buttons">Buttons</a></li>
+                <li><a href="ui-cards.html" data-key="t-cards">Cards</a></li>
+              </ul>
+            </li>
+
+
+          </ul>
+        </div>
+        <!-- Sidebar -->
+
+        <div class="p-3 px-4 sidebar-footer">
+          <p class="mb-1 main-title">
+            <script>document.write(new Date().getFullYear())</script> &copy; Borex.
+          </p>
+          <p class="mb-0">Design & Develop by Themesbrand</p>
+        </div>
+      </div>
+    </div>
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenujs/metismenujs.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <!-- <script src="assets/libs/eva-icons/eva.min.js"></script> -->
+
+    <!-- apexcharts -->
+    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Vector map-->
+    <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+    <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>
+
+    <!-- swiper js -->
+    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- dashboard init -->
+    <script src="assets/js/pages/dashboard-saas.init.js"></script>
+
+    <script src="assets/js/app.js"></script>
+  </body>
+
