@@ -1,1 +1,23 @@
-flatpickr("#datepicker-basic"),flatpickr("#datepicker-datetime-start",{enableTime:!0,dateFormat:"m-d-Y H:i"}),flatpickr("#datepicker-datetime-end",{enableTime:!0,dateFormat:"m-d-Y H:i"});
+/*
+Template Name: Borex - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://Themesbrand.com/
+Contact: Themesbrand@gmail.com
+File:  Task Creat Js File
+*/
+
+
+// flatpickr
+
+flatpickr('#datepicker-basic');
+
+flatpickr('#datepicker-datetime-start', {
+  enableTime: true,
+  dateFormat: "m-d-Y H:i"
+});
+
+flatpickr('#datepicker-datetime-end', {
+  enableTime: true,
+  dateFormat: "m-d-Y H:i"
+});
+

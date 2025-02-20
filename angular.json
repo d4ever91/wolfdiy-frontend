@@ -25,17 +25,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/css/icons.min.css",
-              "src/assets/css/app.min.css",
-              "src/assets/libs/jsvectormap/css/jsvectormap.min.css",
-              "src/assets/libs/swiper/swiper-bundle.min.css"
+              "src/assets/scss/bootstrap.scss"
             ],
             "scripts": [
-              "src/assets/libs/bootstrap/js/bootstrap.bundle.min.js",
-              "src/assets/libs/metismenujs/metismenujs.min.js",
-              "src/assets/libs/simplebar/simplebar.min.js"
+              "src/assets/js/pages/pass-addon.init.js",
+              "src/assets/js/pages/eva-icon.init.js"
             ]
 
           },

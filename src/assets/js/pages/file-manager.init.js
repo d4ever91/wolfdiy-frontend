@@ -1,1 +1,79 @@
-function getChartColorsArray(e){if(null!==document.getElementById(e))return e=document.getElementById(e).getAttribute("data-colors"),(e=JSON.parse(e)).map(function(e){e=e.replace(" ","");return-1==e.indexOf("--")?e:getComputedStyle(document.documentElement).getPropertyValue(e)||void 0})}var barchartColors=getChartColorsArray("stroked_radialbar"),options={series:[76.2],chart:{height:270,type:"radialBar",offsetY:-20},plotOptions:{radialBar:{startAngle:-135,endAngle:135,dataLabels:{name:{fontSize:"16px",color:void 0,offsetY:120},value:{offsetY:76,fontSize:"20px",color:void 0,formatter:function(e){return e+"%"}}}}},fill:{type:"gradient",gradient:{shade:"dark",shadeIntensity:.15,inverseColors:!1,opacityFrom:1,opacityTo:1,stops:[0,50,65,91]}},stroke:{dashArray:4},labels:["64 GB used"],colors:barchartColors},chart=new ApexCharts(document.querySelector("#stroked_radialbar"),options);chart.render();
+/*
+Template Name: Borex - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://Themesbrand.com/
+Contact: Themesbrand@gmail.com
+File: file manager Init Js File
+*/
+// Stroked Gauge
+
+
+
+function getChartColorsArray(chartId) {
+    if (document.getElementById(chartId) !== null) {
+        var colors = document.getElementById(chartId).getAttribute("data-colors");
+        colors = JSON.parse(colors);
+        return colors.map(function (value) {
+            var newValue = value.replace(" ", "");
+            if (newValue.indexOf("--") != -1) {
+                var color = getComputedStyle(document.documentElement).getPropertyValue(
+                    newValue
+                );
+                if (color) return color;
+            } else {
+                return newValue;
+            }
+        });
+    }
+  }
+
+
+var barchartColors = getChartColorsArray("stroked_radialbar");
+var options = {
+  series: [76.20],
+  chart: {
+  height: 270,
+  type: 'radialBar',
+  offsetY: -20
+},
+plotOptions: {
+  radialBar: {
+    startAngle: -135,
+    endAngle: 135,
+    dataLabels: {
+      name: {
+        fontSize: '16px',
+        color: undefined,
+        offsetY: 120
+      },
+      value: {
+        offsetY: 76,
+        fontSize: '20px',
+        color: undefined,
+        formatter: function (val) {
+          return val + "%";
+        }
+      }
+    }
+  }
+},
+fill: {
+  type: 'gradient',
+  gradient: {
+      shade: 'dark',
+      shadeIntensity: 0.15,
+      inverseColors: false,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 50, 65, 91]
+  },
+},
+stroke: {
+  dashArray: 4
+},
+labels: ['64 GB used'],
+colors: barchartColors,
+};
+
+var chart = new ApexCharts(document.querySelector("#stroked_radialbar"), options);
+chart.render();
