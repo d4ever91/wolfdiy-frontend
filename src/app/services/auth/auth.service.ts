@@ -9,7 +9,7 @@ import { map, tap } from 'rxjs/operators';
 })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(this.hasToken());
-  private apiUrl = 'https://project.surveywerkx.com/api/v2/admin/login';
+  private apiUrl = 'https://project.surveywerkx.com/api/v2/admin/auth/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
