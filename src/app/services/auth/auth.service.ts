@@ -9,16 +9,16 @@ import { map, tap } from 'rxjs/operators';
 })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(this.hasToken());
-  private apiUrl = 'https://project.surveywerkx.com/admin/login';
+  private apiUrl = 'https://project.surveywerkx.com/api/v2/admin/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(username: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://project.surveywerkx.com',
     });
-    return this.http.post<{ token: string }>(this.apiUrl, { username, password}, { headers: headers }).pipe(
+    return this.http.post<{ token: string }>(this.apiUrl, { email, password}, { headers: headers }).pipe(
       tap(response => {
         if (response.token) {
           localStorage.setItem('token', response.token);
