@@ -25,7 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/scss/bootstrap.scss"
+              "src/assets/scss/bootstrap.scss",
+              "src/assets/scss/icons.scss",
+              "src/assets/scss/app.scss"
+
             ],
             "scripts": [
               "src/assets/js/pages/pass-addon.init.js",
