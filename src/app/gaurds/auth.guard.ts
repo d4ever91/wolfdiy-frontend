@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CredentialsService } from '../services/credentials.service'; // Import CredentialsService
 import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard  {
-  constructor(private authService: AuthService, private router: Router) { }
+export class AuthGuard implements CanActivate {
+  constructor(
+    private credentialsService: CredentialsService,  // Inject CredentialsService
+    private router: Router
+  ) { }
 
-  canActivate(): Observable<boolean> {
-    return this.authService.isLoggedIn().pipe(
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.credentialsService.credentials$.pipe(
       take(1),
-      map(isAuthenticated => {
+      map(credentials => {
+        const isAuthenticated = !!credentials?.token && !this.credentialsService['isTokenExpired'](credentials.token); // Check token existence and expiry
+
         if (isAuthenticated) {
-          return true;
+          return true; // Allow access
+        } else {
+          // Not authenticated, redirect to login page
+          return this.router.createUrlTree(['/login']);
         }
-        this.router.navigate(['/login']);
-        return false;
       })
     );
   }
