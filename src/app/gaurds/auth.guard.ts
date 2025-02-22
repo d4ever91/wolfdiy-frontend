@@ -9,7 +9,7 @@ import { map, take } from 'rxjs/operators';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private credentialsService: CredentialsService,  // Inject CredentialsService
+    private credentialsService: CredentialsService,
     private router: Router
   ) { }
 
@@ -17,8 +17,7 @@ export class AuthGuard implements CanActivate {
     return this.credentialsService.credentials$.pipe(
       take(1),
       map(credentials => {
-        const isAuthenticated = !!credentials?.token && !this.credentialsService['isTokenExpired'](credentials.token); // Check token existence and expiry
-
+        const isAuthenticated = !!credentials?.token && !this.credentialsService['isTokenExpired'](credentials.token);
         if (isAuthenticated) {
           return true; // Allow access
         } else {

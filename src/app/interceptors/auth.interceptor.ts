@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const credentials = this.credentialsService.credentials; // Get credentials object
 
-    if (credentials && credentials.token && !this.credentialsService['isTokenExpired'](credentials.token)) { // Check for token existence AND validity
+    if (credentials && credentials.token && !this.credentialsService.isTokenExpired(credentials.token)) { // Check for token existence AND validity
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${credentials.token}`

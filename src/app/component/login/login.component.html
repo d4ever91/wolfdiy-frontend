@@ -19,18 +19,33 @@
                         <div class="auth-content my-auto">
                           <div class="text-center">
                             <h5 class="mb-0">Welcome Back !</h5>
-                            <p class="text-muted mt-2">Sign in to continue to Borex.</p>
+                            <p class="text-muted mt-2">Sign in to continue to Wolf Insights.</p>
                           </div>
-                          <form class="mt-4 pt-2" action="index.html" (submit)="login()">
+                          <form class="mt-4 pt-2"  [formGroup]="loginForm" (ngSubmit)="login()">
                             <div class="form-floating form-floating-custom mb-4">
-                              <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Enter Email" required>
-                              <label for="input-email">email</label>
+                              <input type="email" class="form-control" formControlName="email" placeholder="Enter Email">
+                              <label>Email</label>
                               <div class="form-floating-icon">
                                 <i data-eva="people-outline"></i>
                               </div>
+                              <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+      <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+      <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</small>
+    </div>
                             </div>
-
                             <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
+                              <input type="password" class="form-control" formControlName="password" placeholder="Enter Password">
+                              <label>Password</label>
+                              <div class="form-floating-icon">
+                                <i data-eva="lock-outline"></i>
+                              </div>
+                              <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-danger">
+                                <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+                                <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</small>
+                              </div>
+                            </div>
+                            <div class="text-danger mb-3" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            <!-- <div class="form-floating form-floating-custom mb-4 auth-pass-inputgroup">
                               <input type="password" class="form-control pe-5" [(ngModel)]="password" name="password" placeholder="Enter Password"
                               required>
                               <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
@@ -41,8 +56,8 @@
                               <div class="form-floating-icon">
                                 <i data-eva="lock-outline"></i>
                               </div>
-                            </div>
-                            <div class="text-danger mb-3" *ngIf="errorMessage">{{ errorMessage }}</div>
+                            </div> -->
+                            <!-- <div class="text-danger mb-3" *ngIf="errorMessage">{{ errorMessage }}</div> -->
                             <div class="row mb-4">
                               <div class="col">
                                 <div class="form-check font-size-15">
@@ -56,7 +71,9 @@
                             </div>
 
                             <div class="mb-3">
-                              <button class="btn btn-primary w-100 waves-effect waves-light" type="submit" [disabled]="loading">Log In</button>
+                              <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid || loading">
+                              {{ loading ? 'Logging in...' : 'Login' }}
+                              </button>
                             </div>
                           </form>
                         </div>

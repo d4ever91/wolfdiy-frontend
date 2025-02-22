@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Credentials } from '../modules/credentials.interface';
 import { BehaviorSubject } from 'rxjs';
-import * as jwt_decode from 'jwt-decode';
-
+// import * as jwt_decode from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
 const credentialsKey = 'credentials';
 
 @Injectable({
@@ -12,6 +12,7 @@ const credentialsKey = 'credentials';
 export class CredentialsService {
   private _credentials = new BehaviorSubject<Credentials | null>(null);
   public credentials$ = this._credentials.asObservable();
+  private jwtHelper = new JwtHelperService();
 
   constructor() {
     this.loadCredentialsFromStorage();
@@ -50,13 +51,12 @@ export class CredentialsService {
     return this._credentials.value;
   }
 
-  isAuthenticated(): boolean {
-    return !!this._credentials.value?.token && !this.isTokenExpired(this._credentials.value.token);
-  }
+  // isAuthenticated(): boolean {
+  //   return !!this._credentials.value?.token && !this.isTokenExpired(this._credentials.value.token);
+  // }
 
   setCredentials(credentials: Credentials | null | undefined = undefined, remember = true): void {
-    this._credentials.next(credentials || null); // Update the BehaviorSubject
-
+    this._credentials.next(credentials || null);
     if (credentials) {
       const storage = remember ? localStorage : sessionStorage;
       storage.setItem(credentialsKey, JSON.stringify(credentials));
@@ -66,19 +66,8 @@ export class CredentialsService {
     }
   }
 
-  private isTokenExpired(token: string): boolean {
-    try {
-      const decodedToken: any = jwt_decode.jwtDecode(token); // Decode the token
-      if (!decodedToken || !decodedToken.exp) {
-        return true; // Token is invalid or doesn't have an expiry
-      }
-
-      const expiryDate = new Date(decodedToken.exp * 1000); // Convert seconds to milliseconds
-      return expiryDate <= new Date(); // Check if expired
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      return true; // Assume expired if there's an error decoding
-    }
+   isTokenExpired(token: string): boolean {
+    return this.jwtHelper.isTokenExpired(token);
   }
 }
 

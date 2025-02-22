@@ -9,9 +9,9 @@ import { alreadyLoggedCheckGuard } from './gaurds/already-logged-check.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   // { path: 'login', component: LoginComponent },
-  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent, canActivate: [alreadyLoggedCheckGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [alreadyLoggedCheckGuard] },
+  // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

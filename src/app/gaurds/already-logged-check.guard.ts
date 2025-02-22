@@ -1,23 +1,15 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
 import { CredentialsService } from '../services/credentials.service';
-import { map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
 
-export const alreadyLoggedCheckGuard: CanActivateFn = (route, state): Observable<boolean> => {
+export const alreadyLoggedCheckGuard: CanActivateFn = (route, state) => {
   const credentialsService = inject(CredentialsService);
   const router = inject(Router);
 
-  return credentialsService.credentials$.pipe(
-    map(credentials => {
-      const isAuthenticated = !!credentials?.token && !credentialsService['isTokenExpired'](credentials.token);
-
-      if (isAuthenticated) {
-        router.navigateByUrl('/dashboard');
-        return false; // Prevent access to login page
-      } else {
-        return true; // Allow access to login page
-      }
-    })
-  );
+  if (credentialsService.credentials?.token) {
+    router.navigateByUrl('/dashboard');
+    return false;
+  }
+  return true;
 };
